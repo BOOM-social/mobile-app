@@ -6,11 +6,14 @@ import {
   Image,
   FlatList,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { useAuthStore } from "../utils/authentication";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Profile() {
   const toggleLogin = useAuthStore((state) => state.toggle);
+  const nav = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
@@ -26,14 +29,26 @@ export default function Profile() {
         </View>
       </View>
       <View style={styles.followPanel}>
-        <View style={styles.followInfo}>
-          <Text style={styles.followNum}>42</Text>
-          <Text>Following</Text>
-        </View>
-        <View style={styles.followInfo}>
-          <Text style={styles.followNum}>22</Text>
-          <Text>Followers</Text>
-        </View>
+        <Pressable
+          onPress={() => {
+            nav.navigate("Follow", { screen: "Following" });
+          }}
+        >
+          <View style={styles.followInfo}>
+            <Text style={styles.followNum}>42</Text>
+            <Text>Following</Text>
+          </View>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            nav.navigate("Follow", { screen: "Followers" });
+          }}
+        >
+          <View style={styles.followInfo}>
+            <Text style={styles.followNum}>22</Text>
+            <Text>Followers</Text>
+          </View>
+        </Pressable>
       </View>
       <Text style={styles.postTitle}>Posts</Text>
       <FlatList
