@@ -5,7 +5,6 @@ import {
   Button,
   Image,
   FlatList,
-  ScrollView,
   Pressable,
 } from "react-native";
 import { useAuthStore } from "../utils/authentication";
@@ -15,65 +14,70 @@ export default function Profile() {
   const toggleLogin = useAuthStore((state) => state.toggle);
   const nav = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.profileHeader}>
-        <Image
-          style={styles.profilePicture}
-          source={require("../assets/icon.png")}
-        />
-        <View style={styles.userInfo}>
-          <Text style={styles.username}>Username</Text>
-          <Text style={styles.userDescription}>
-            More info, like description or leaderboard stats
-          </Text>
-        </View>
-      </View>
-      <View style={styles.followPanel}>
-        <Pressable
-          onPress={() => {
-            nav.navigate("Follow", { screen: "Following" });
-          }}
-        >
-          <View style={styles.followInfo}>
-            <Text style={styles.followNum}>42</Text>
-            <Text>Following</Text>
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            nav.navigate("Follow", { screen: "Followers" });
-          }}
-        >
-          <View style={styles.followInfo}>
-            <Text style={styles.followNum}>22</Text>
-            <Text>Followers</Text>
-          </View>
-        </Pressable>
-      </View>
-      <Text style={styles.postTitle}>Posts</Text>
-      <FlatList
-        style={styles.postGrid}
-        data={[...Array(13).keys()]}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              marginVertical: 8,
-            }}
-          >
+    <FlatList
+      ListHeaderComponent={
+        <View style={styles.container}>
+          <View style={styles.profileHeader}>
             <Image
-              style={styles.imageThumbnail}
+              style={styles.profilePicture}
               source={require("../assets/icon.png")}
             />
+            <View style={styles.userInfo}>
+              <Text style={styles.username}>Username</Text>
+              <Text style={styles.userDescription}>
+                More info, like description or leaderboard stats
+              </Text>
+            </View>
           </View>
-        )}
-        //Setting the number of column
-        numColumns={3}
-        keyExtractor={(item, index) => index.toString()}
-      />
-      <Button title="Logout" onPress={() => toggleLogin()} />
-    </View>
+          <View style={styles.followPanel}>
+            <Pressable
+              onPress={() => {
+                nav.navigate("Follow", { screen: "Following" });
+              }}
+            >
+              <View style={styles.followInfo}>
+                <Text style={styles.followNum}>42</Text>
+                <Text>Following</Text>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                nav.navigate("Follow", { screen: "Followers" });
+              }}
+            >
+              <View style={styles.followInfo}>
+                <Text style={styles.followNum}>22</Text>
+                <Text>Followers</Text>
+              </View>
+            </Pressable>
+          </View>
+          <Text style={styles.postTitle}>Posts</Text>
+        </View>
+      }
+      style={styles.postGrid}
+      data={[...Array(13).keys()]}
+      renderItem={({ item }) => (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "column",
+            padding: 8,
+          }}
+        >
+          <Image
+            style={styles.imageThumbnail}
+            source={require("../assets/icon.png")}
+          />
+        </View>
+      )}
+      //Setting the number of column
+      numColumns={3}
+      keyExtractor={(item, index) => index.toString()}
+      ListFooterComponent={
+        <Button title="Logout" onPress={() => toggleLogin()} />
+      }
+      ListFooterComponentStyle={{ marginBottom: 16, alignItems: "center" }}
+    />
   );
 }
 
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "stretch",
     justifyContent: "flex-start",
-    padding: 16,
+    padding: 8,
   },
   profileHeader: {
     flexDirection: "row",
@@ -108,7 +112,6 @@ const styles = StyleSheet.create({
   followPanel: {
     width: "auto",
     flexDirection: "row",
-    // justifyContent: "space-between",
   },
   followInfo: {
     flexDirection: "row",
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 32,
   },
-  postGrid: {},
+  postGrid: { backgroundColor: "white", padding: 8 },
   imageThumbnail: {
     justifyContent: "center",
     alignItems: "center",
