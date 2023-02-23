@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, FlatList, Image } from "react-native";
-import FollowButton from "../components/FollowButton";
+import PositiveButton from "../components/buttons/PositiveButton";
 import { useAuthStore } from "../utils/authentication";
 
 export default function Followers() {
@@ -21,7 +21,7 @@ export default function Followers() {
                 More info, like description or leaderboard stats
               </Text>
             </View>
-            <FollowButton onPress={() => {}} />
+            <PositiveButton title="Follow" onPress={() => {}} />
           </View>
         )}
         ListFooterComponent={
