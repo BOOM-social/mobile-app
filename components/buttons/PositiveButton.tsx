@@ -2,14 +2,15 @@ import React from "react";
 import { Text, StyleSheet, Pressable } from "react-native";
 
 export interface ButtonProps {
+  title: string;
   onPress: () => void;
 }
 
-export default function UnfollowButton(props: ButtonProps) {
+export default function PositiveButton(props: ButtonProps) {
   const { onPress } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>Unfollow</Text>
+      <Text style={styles.text}>{props.title}</Text>
     </Pressable>
   );
 }

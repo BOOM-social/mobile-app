@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, FlatList, Image } from "react-native";
-import UnfollowButton from "../components/UnfollowButton";
+import UnfollowButton from "../components/buttons/UnfollowButton";
 import { useAuthStore } from "../utils/authentication";
 
 export default function Following() {

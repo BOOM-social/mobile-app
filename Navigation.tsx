@@ -12,6 +12,7 @@ import Notifications from "./screens/Notifications";
 import Followers from "./screens/Followers";
 import Following from "./screens/Following";
 import { useAuthStore } from "./utils/authentication";
+import FollowRequests from "./screens/FollowRequests";
 
 export default function Navigation() {
   // Authentication state for conditional rendering later on
@@ -45,6 +46,26 @@ export default function Navigation() {
     </ProfileStack.Navigator>
   );
 
+  const NotificationsStack = createStackNavigator();
+  const NotificationsNavigator = () => (
+    <NotificationsStack.Navigator>
+      <NotificationsStack.Screen
+        name="NotificationsScreen"
+        component={Notifications}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <NotificationsStack.Screen
+        name="FollowRequests"
+        component={FollowRequests}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </NotificationsStack.Navigator>
+  );
+
   // Create the main navigation component
   const Tab = createBottomTabNavigator();
   const MainNavigator = (
@@ -53,7 +74,7 @@ export default function Navigation() {
       <Tab.Screen name="Leaderboard" component={Leaderboard} />
       <Tab.Screen name="NewPost" component={NewPost} />
       <Tab.Screen name="Profile" component={ProfileNavigator} />
-      <Tab.Screen name="Notifications" component={Notifications} />
+      <Tab.Screen name="Notifications" component={NotificationsNavigator} />
     </Tab.Navigator>
   );
 
