@@ -9,7 +9,7 @@ export default function UnfollowButton(props: ButtonProps) {
   const { onPress } = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>Unfollow</Text>
+      <Text style={styles.text}>Follow</Text>
     </Pressable>
   );
 }
