@@ -5,9 +5,11 @@ import PositiveButton from "../components/buttons/PositiveButton";
 import Divider from "../components/Divider";
 
 import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol";
+import useAuthorization from "../utils/useAuthorization";
 
 export default function Leaderboard() {
   const toggleLogin = useAuthStore((state) => state.toggle);
+  const { authorizeSession } = useAuthorization();
   return (
     <FlatList
       ListHeaderComponent={
@@ -30,10 +32,7 @@ export default function Leaderboard() {
             title="Get more points"
             onPress={() => {
               transact(async (mobileWallet) => {
-                const authorization = await mobileWallet.authorize({
-                  cluster: "devnet",
-                  identity: { name: "My Expo App" },
-                });
+                const authorization = await authorizeSession(mobileWallet);
                 console.log(authorization);
               });
             }}
