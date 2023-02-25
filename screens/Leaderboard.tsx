@@ -4,12 +4,11 @@ import { AntDesign } from "@expo/vector-icons";
 import PositiveButton from "../components/buttons/PositiveButton";
 import Divider from "../components/Divider";
 
-import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol";
 import useAuthorization from "../utils/useAuthorization";
 
 export default function Leaderboard() {
   const toggleLogin = useAuthStore((state) => state.toggle);
-  const { authorizeSession } = useAuthorization();
+  const { selectedAccount } = useAuthorization();
   return (
     <FlatList
       ListHeaderComponent={
@@ -31,10 +30,7 @@ export default function Leaderboard() {
           <PositiveButton
             title="Get more points"
             onPress={() => {
-              transact(async (mobileWallet) => {
-                const authorization = await authorizeSession(mobileWallet);
-                console.log(authorization);
-              });
+              console.log("Selected auccount:", selectedAccount?.publicKey);
             }}
           />
           <Divider />

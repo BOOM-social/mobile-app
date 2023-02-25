@@ -1,4 +1,5 @@
 import { Button, StyleSheet, Text, View } from "react-native";
+import DisconnectButton from "../components/buttons/DisconnectButton";
 import { useAuthStore } from "../utils/authentication";
 
 export default function Feed() {
@@ -7,7 +8,8 @@ export default function Feed() {
   return (
     <View style={styles.container}>
       <Text>Feed page</Text>
-      <Button title="Logout" onPress={() => toggleLogin()} />
+      {/* <Button title="Logout" onPress={() => toggleLogin()} /> */}
+      <DisconnectButton />
     </View>
   );
 }

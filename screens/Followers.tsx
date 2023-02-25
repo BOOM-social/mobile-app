@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Button, FlatList, Image } from "react-native";
+import DisconnectButton from "../components/buttons/DisconnectButton";
 import PositiveButton from "../components/buttons/PositiveButton";
 import { useAuthStore } from "../utils/authentication";
 
@@ -25,7 +26,8 @@ export default function Followers() {
           </View>
         )}
         ListFooterComponent={
-          <Button title="Logout" onPress={() => toggleLogin()} />
+          // <Button title="Logout" onPress={() => toggleLogin()} />
+          <DisconnectButton />
         }
         ListFooterComponentStyle={{
           marginBottom: 16,

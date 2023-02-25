@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { useAuthStore } from "../utils/authentication";
 import { NavigationProp } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import ConnectButton from "../components/buttons/ConnectButton";
 
 export default function Signup() {
   const toggleLogin = useAuthStore((state) => state.toggle);
@@ -10,7 +11,8 @@ export default function Signup() {
   return (
     <View style={styles.container}>
       <Text>Sign up page</Text>
-      <Button title="Connect wallet (login)" onPress={() => toggleLogin()} />
+      <ConnectButton />
+      {/* <Button title="Connect wallet (login)" onPress={() => toggleLogin()} /> */}
       <Button title="Login" onPress={() => nav.navigate("Login")} />
     </View>
   );

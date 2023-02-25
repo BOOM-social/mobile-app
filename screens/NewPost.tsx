@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Button } from "react-native";
+import DisconnectButton from "../components/buttons/DisconnectButton";
 import { useAuthStore } from "../utils/authentication";
 
 export default function NewPost() {
@@ -6,7 +7,8 @@ export default function NewPost() {
   return (
     <View style={styles.container}>
       <Text>New post page</Text>
-      <Button title="Logout" onPress={() => toggleLogin()} />
+      {/* <Button title="Logout" onPress={() => toggleLogin()} /> */}
+      <DisconnectButton />
     </View>
   );
 }

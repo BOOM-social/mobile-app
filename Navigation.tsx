@@ -13,10 +13,12 @@ import Followers from "./screens/Followers";
 import Following from "./screens/Following";
 import { useAuthStore } from "./utils/authentication";
 import FollowRequests from "./screens/FollowRequests";
+import useAuthorization from "./utils/useAuthorization";
 
 export default function Navigation() {
   // Authentication state for conditional rendering later on
   const loggedIn = useAuthStore((state) => state.loggedIn);
+  const { selectedAccount } = useAuthorization();
 
   const FollowTab = createMaterialTopTabNavigator();
   const FollowNavigator = () => (
@@ -86,7 +88,7 @@ export default function Navigation() {
       <AuthTab.Screen name="Signup" component={Signup} />
     </AuthTab.Navigator>
   );
-  if (loggedIn) {
+  if (selectedAccount) {
     return MainNavigator;
   } else {
     return AuthNavigator;

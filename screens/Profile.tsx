@@ -9,10 +9,14 @@ import {
 } from "react-native";
 import { useAuthStore } from "../utils/authentication";
 import { useNavigation } from "@react-navigation/native";
+import useAuthorization from "../utils/useAuthorization";
+import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol-web3js";
+import DisconnectButton from "../components/buttons/DisconnectButton";
 
 export default function Profile() {
   const toggleLogin = useAuthStore((state) => state.toggle);
   const nav = useNavigation();
+  const { deauthorizeSession } = useAuthorization();
   return (
     <FlatList
       ListHeaderComponent={
@@ -74,7 +78,8 @@ export default function Profile() {
       numColumns={3}
       keyExtractor={(item, index) => index.toString()}
       ListFooterComponent={
-        <Button title="Logout" onPress={() => toggleLogin()} />
+        // <Button title="Logout" onPress={() => toggleLogin()} />
+        <DisconnectButton />
       }
       ListFooterComponentStyle={{ marginBottom: 16, alignItems: "center" }}
     />
