@@ -4,6 +4,8 @@ import { AntDesign } from "@expo/vector-icons";
 import PositiveButton from "../components/buttons/PositiveButton";
 import Divider from "../components/Divider";
 
+import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol";
+
 export default function Leaderboard() {
   const toggleLogin = useAuthStore((state) => state.toggle);
   return (
@@ -24,7 +26,18 @@ export default function Leaderboard() {
               </View>
             </View>
           </View>
-          <PositiveButton title="Get more points" onPress={() => {}} />
+          <PositiveButton
+            title="Get more points"
+            onPress={() => {
+              transact(async (mobileWallet) => {
+                const authorization = await mobileWallet.authorize({
+                  cluster: "devnet",
+                  identity: { name: "My Expo App" },
+                });
+                console.log(authorization);
+              });
+            }}
+          />
           <Divider />
           <Text style={styles.leaderboardTitle}>Leaderboard</Text>
         </View>
