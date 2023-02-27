@@ -15,6 +15,7 @@ import {
 import { Cache, SWRConfig } from "swr";
 
 const DEVNET_ENDPOINT = /*#__PURE__*/ clusterApiUrl("devnet");
+const MAINNET_ENDPOINT = /*#__PURE__*/ clusterApiUrl("mainnet-beta");
 
 function cacheReviver(key: string, value: any) {
   if (key === "publicKey") {
@@ -65,7 +66,7 @@ export default function App() {
   return (
     <ConnectionProvider
       config={{ commitment: "processed" }}
-      endpoint={DEVNET_ENDPOINT}
+      endpoint={MAINNET_ENDPOINT}
     >
       <SafeAreaView style={styles.shell}>
         <Suspense
