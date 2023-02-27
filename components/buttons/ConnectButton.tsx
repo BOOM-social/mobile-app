@@ -1,5 +1,5 @@
 import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol-web3js";
-import { Transaction } from "@solana/web3.js";
+import { Keypair, Transaction } from "@solana/web3.js";
 import React, { useCallback, useState } from "react";
 import { Button } from "react-native";
 import useSocialProtocolStore from "../../stores/useSocialProtocolStore";
@@ -49,14 +49,14 @@ export default function ConnectButton() {
         };
         try {
           const protocolOptions = {
-            rpcUrl:
-              "https://rpc.helius.xyz/?api-key=b278509a-4b42-4167-ac24-9a6ccdded328",
+            // rpcUrl:
+            //   "https://rpc.helius.xyz/?api-key=b278509a-4b42-4167-ac24-9a6ccdded328",
             useIndexer: true,
           } as ProtocolOptions;
           console.log("Creating social protocol");
 
           const socialProtocol: SocialProtocol = await new SocialProtocol(
-            nodeWallet, // user wallet
+            Keypair.generate(), // user wallet
             null, // payer (optional)
             protocolOptions // protocol options defined above
           ).init();
